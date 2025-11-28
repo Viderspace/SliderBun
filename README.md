@@ -1,87 +1,101 @@
 # SliderBun
-Minimal macOS utility for controlling **volume**, **brightness**, and **Shortcuts actions** using a **QMK-based hardware slider**.
 
-No installers, no background daemons, no BS.  
-Just a single menu-bar app that reacts to RAW HID reports.
+SliderBun is a small macOS utility that connects a QMK-controlled analog slider to system functions such as volume, brightness, or user-defined shortcuts.  
+It is intended for users who prefer physical input devices over software controls.
 
 ---
 
-## Features
-- System volume control  
-- Built-in display brightness control  
-- 4 assignable macOS Shortcuts (`SliderBun1`…`SliderBun4`)  
-- Simple HUD (icon + slider + value)  
-- Menu-bar icon updates based on the active control  
-- “Launch at Login” support  
-- macOS 14+ (Sonoma and up)
+## Overview
+
+When running, SliderBun resides in the macOS menu bar and listens for input from a QMK device implementing a simple HID protocol.  
+Upon receiving a normalized value (0.0–1.0), it applies the configured action and optionally displays a minimal on-screen indicator.
+
+Typical use cases:
+- Hardware volume control  
+- Hardware display brightness control  
+- Triggering macOS Shortcuts
+
+A demonstration QMK firmware is provided separately.
+
+*(screenshot placeholder)*  
+`![HUD](docs/hud_placeholder.png)`
 
 ---
 
 ## Installation
-1. Download the latest release from **Releases**.  
-2. Open the `.dmg`.  
-3. Drag `SliderBun.app` into `/Applications`.  
-4. Run it. The app lives in the menu bar.  
-5. Open Settings via menu-bar icon.
 
-No configuration files. Nothing persistent except your two preferences.
+1. Download the current release (`.dmg`).  
+2. Open the disk image and drag `SliderBun.app` into `Applications`.  
+3. Launch the application.  
+4. If desired, enable “Launch at Login” from the Settings window.
 
----
+No additional system extensions or drivers are required.
 
-## QMK Protocol
-SliderBun listens for RAW HID packets of the form:
-
-```
-[0] = command (UInt8)
-[1] = reserved
-[2] = value LSB (UInt8)
-[3] = value MSB (UInt8)
-```
-
-Where `value` is a 16-bit analog reading normalized to 0.0–1.0.
-
-Supported commands:
-
-```
-0x01  setVolume
-0x02  setBrightness
-0x10  shortcut1
-0x11  shortcut2
-0x12  shortcut3
-0x13  shortcut4
-```
-
-A ready-to-use QMK reference implementation will be provided in this repository.
+*(dmg layout screenshot placeholder)*  
+`![DMG](docs/dmg_placeholder.png)`
 
 ---
 
-## Shortcuts Integration
-Each shortcut slot (`SliderBun1`...`SliderBun4`) is triggered when its command is received.  
-SliderBun writes the slider value to a temp file and invokes the Shortcut via the system `shortcuts` CLI.
+## Operation
 
-Shortcuts can read the file or use "Shortcut Input".
+After launch, a small icon appears in the menu bar.  
+Moving the hardware slider sends events through QMK; the application translates these into macOS actions.
 
-A `Shortcuts Demo/` folder is included in the DMG.
+A small window with two controls is available:
+- show HUD on input  
+- launch at login  
+
+Behavior is immediate and does not require relaunching.
+
+*(settings screenshot placeholder)*  
+`![Settings](docs/settings_placeholder.png)`
 
 ---
 
-## Settings
-- **Show HUD**: enables/disables the on-screen HUD  
-- **Launch at Login**: managed via `SMAppService`  
-Settings stay minimal by design.
+## QMK Firmware
+
+SliderBun depends on a matching QMK implementation that reports slider values through a simple normalized HID field.  
+A reference implementation is available here:
+
+https://github.com/yourname/yourqmkrepo (placeholder)
+
+The QMK side is intentionally small and easy to adapt to other keyboards or analog inputs.  
+Any board capable of reading an ADC value can be supported.
+
+---
+
+## Shortcuts
+
+The disk image includes a `Shortcuts Demo` directory containing four example macOS Shortcuts named:
+
+- `SliderBun1`  
+- `SliderBun2`  
+- `SliderBun3`  
+- `SliderBun4`
+
+These serve as placeholders for custom automation.
+
+---
+
+## Requirements
+
+- macOS 14.0 or newer  
+- A QMK-compatible device with an analog input  
+- The accompanying firmware described above
 
 ---
 
 ## Notes
-- Brightness is controlled using undocumented `DisplayServices` APIs (same technique used by MonitorControl).  
-- SliderBun never transmits, collects, or stores user data.  
-- No licensing yet (all rights reserved). May change later.
+
+SliderBun is intended to be simple, transparent, and predictable.  
+It does not attempt to manage more than one slider, map multiple devices, or perform device discovery.  
+The application does not collect data and does not communicate externally.
 
 ---
 
-## About
-SliderBun is intentionally small and handcrafted.  
-It doesn’t attempt to be an ecosystem, a platform, or a product.  
-It’s a utility — like they used to make them.
+## License
 
-PRs and forks welcome once the project stabilizes.
+The macOS application is released under the MIT license.  
+The QMK code follows the licensing requirements of QMK (GPL-2.0).
+
+Bug reports and contributions are welcome.
