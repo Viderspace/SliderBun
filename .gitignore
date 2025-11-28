@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Xcode
+xcuserdata/
+xcshareddata/
+DerivedData/
+build/
+*.xccheckout
+*.xcscmblueprint
+
+# SwiftPM
+.build/
+
+# Other
+*.swp
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# DMG / release artifacts
+*.dmg
+/Releases/
