@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D69D3DFF2ED72EA5000C4499 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D69D3DFE2ED72EA5000C4499 /* CoreAudio.framework */; };
+		D6A3D6882ED906DD00CA52BD /* DisplayServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6A3D6872ED906DD00CA52BD /* DisplayServices.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		D69D3DDE2ED64118000C4499 /* QMKBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QMKBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D69D3DDE2ED64118000C4499 /* SliderBun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SliderBun.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D69D3DFE2ED72EA5000C4499 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D6A3D6872ED906DD00CA52BD /* DisplayServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DisplayServices.framework; path = ../../../../../System/Library/PrivateFrameworks/DisplayServices.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +30,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6A3D6882ED906DD00CA52BD /* DisplayServices.framework in Frameworks */,
+				D69D3DFF2ED72EA5000C4499 /* CoreAudio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,17 +41,27 @@
 		D69D3DD52ED64118000C4499 = {
 			isa = PBXGroup;
 			children = (
-				D69D3DE02ED64118000C4499 /* QMKBridge */,
+				D69D3DEC2ED6417B000C4499 /* Frameworks */,
 				D69D3DDF2ED64118000C4499 /* Products */,
+				D69D3DE02ED64118000C4499 /* QMKBridge */,
 			);
 			sourceTree = "<group>";
 		};
 		D69D3DDF2ED64118000C4499 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D69D3DDE2ED64118000C4499 /* QMKBridge.app */,
+				D69D3DDE2ED64118000C4499 /* SliderBun.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D69D3DEC2ED6417B000C4499 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6A3D6872ED906DD00CA52BD /* DisplayServices.framework */,
+				D69D3DFE2ED72EA5000C4499 /* CoreAudio.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -67,7 +86,7 @@
 			packageProductDependencies = (
 			);
 			productName = QMKBridge;
-			productReference = D69D3DDE2ED64118000C4499 /* QMKBridge.app */;
+			productReference = D69D3DDE2ED64118000C4499 /* SliderBun.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -82,6 +101,7 @@
 				TargetAttributes = {
 					D69D3DDD2ED64118000C4499 = {
 						CreatedOnToolsVersion = 26.1.1;
+						LastSwiftMigration = 2610;
 					};
 				};
 			};
@@ -250,30 +270,41 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6FCZQS36Q2;
-				ENABLE_APP_SANDBOX = YES;
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = SliderBun;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Viderspace.QMKBridge;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SliderBun;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "QMKBridge/QMKBridge-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
 			};
 			name = Debug;
 		};
@@ -282,30 +313,40 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6FCZQS36Q2;
-				ENABLE_APP_SANDBOX = YES;
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = SliderBun;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Viderspace.QMKBridge;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SliderBun;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "QMKBridge/QMKBridge-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
 			};
 			name = Release;
 		};
