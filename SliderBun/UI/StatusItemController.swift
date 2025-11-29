@@ -12,12 +12,12 @@ import SwiftUI
 final class StatusItemController: NSObject {
 
     private let statusItem: NSStatusItem
-    private let uiState: QMKBridgeUIState
+    private let uiState: AppUIState
     private let iconRenderer: StatusIconRenderer
     private let settingsController: SettingsWindowController
     private let hudController: HUDController
 
-    init(uiState: QMKBridgeUIState) {
+    init(uiState: AppUIState) {
         self.uiState = uiState
         self.iconRenderer = StatusIconRenderer(canvasSize: NSSize(width: 26, height: 18))
         self.settingsController = SettingsWindowController(uiState: uiState)

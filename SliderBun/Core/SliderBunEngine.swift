@@ -8,15 +8,15 @@
 import Foundation
 
 
-final class QMKBridgeEngine: QMKBridgeListener {
+final class SliderBunEngine: SliderEventListener {
 
     private let registry: CommandRegistry
-    private let uiState: QMKBridgeUIState
+    private let uiState: AppUIState
     private let statusItemController: StatusItemController
 
     init(
         registry: CommandRegistry,
-        uiState: QMKBridgeUIState,
+        uiState: AppUIState,
         statusItemController: StatusItemController
     ) {
         self.registry = registry
@@ -24,7 +24,7 @@ final class QMKBridgeEngine: QMKBridgeListener {
         self.statusItemController = statusItemController
     }
 
-    func didReceive(_ message: QMKBridgeMessage) {
+    func didReceive(_ message: SliderEventMessage) {
         guard
             let cmd = message.command,
             let descriptor = registry[cmd]

@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @Bindable var uiState: QMKBridgeUIState
+    @Bindable var uiState: AppUIState
 
     @AppStorage("showHUDOnEvents") private var showHUDOnEventsStored: Bool = true
 

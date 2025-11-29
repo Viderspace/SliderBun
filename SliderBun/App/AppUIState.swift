@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 @Observable
-final class QMKBridgeUIState {
+final class AppUIState {
 
     // You can keep these if ContentView or other debug UI still relies on them.
     // If not used anywhere, feel free to remove them as well.
@@ -34,7 +34,7 @@ final class QMKBridgeUIState {
 
 // MARK: - NEW generic HUD update API used by the engine
 
-extension QMKBridgeUIState {
+extension AppUIState {
     /// Update the HUD based on a control descriptor and a normalized value.
     /// This is the new, generic path for ALL commands.
     func updateHUD(using descriptor: ControlDescriptor, normalized: Float) {

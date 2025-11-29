@@ -1,11 +1,11 @@
 import SwiftUI
 
 @main
-struct QMKBridgeApp: App {
-    private let uiState = QMKBridgeUIState()
+struct SliderBunApp: App {
+    private let uiState = AppUIState()
 
     private let hidBridge: HIDBridge
-    private let engine: QMKBridgeEngine
+    private let engine: SliderBunEngine
     private let statusItemController: StatusItemController
 
     init() {
@@ -20,13 +20,13 @@ struct QMKBridgeApp: App {
         let statusItemController = StatusItemController(uiState: uiState)
         self.statusItemController = statusItemController
 
-        let registry = QMKBridgeRegistryFactory.makeRegistry(
+        let registry = CommandRegistryFactory.makeRegistry(
             volumeService: volumeService,
             brightnessService: brightnessService,
             shortcutHandler: shortcutHandler
         )
 
-        self.engine = QMKBridgeEngine(
+        self.engine = SliderBunEngine(
             registry: registry,
             uiState: uiState,
             statusItemController: statusItemController

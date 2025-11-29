@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct QMKBridgeRegistryFactory {
+struct CommandRegistryFactory {
 
     static func makeRegistry(
         volumeService: VolumeControlling,

@@ -11,10 +11,10 @@ import SwiftUI
 
 @MainActor
 final class SettingsWindowController: NSObject, NSWindowDelegate {
-    private let uiState: QMKBridgeUIState
+    private let uiState: AppUIState
     private var window: NSWindow?
 
-    init(uiState: QMKBridgeUIState) {
+    init(uiState: AppUIState) {
         self.uiState = uiState
         super.init()
     }

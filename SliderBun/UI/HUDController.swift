@@ -10,7 +10,7 @@ import SwiftUI
 
 @MainActor
 final class HUDController {
-    private let uiState: QMKBridgeUIState
+    private let uiState: AppUIState
     private unowned let statusItem: NSStatusItem
 
     private let hudTimeout: TimeInterval
@@ -18,7 +18,7 @@ final class HUDController {
     private let popover: NSPopover
 
     init(
-        uiState: QMKBridgeUIState,
+        uiState: AppUIState,
         statusItem: NSStatusItem,
         hudTimeout: TimeInterval = 0.5
     ) {

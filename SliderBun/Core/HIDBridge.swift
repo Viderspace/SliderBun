@@ -17,7 +17,7 @@ final class HIDBridge {
     fileprivate let reportBuffer: UnsafeMutablePointer<UInt8>
     fileprivate let manager: IOHIDManager
 
-    weak var listener: QMKBridgeListener?
+    weak var listener: SliderEventListener?
 
     init() {
         print("[HIDBridge] init")
@@ -60,8 +60,8 @@ private extension HIDBridge {
 
     var matchingDictionary: [String: Any] {
         [
-            kIOHIDDeviceUsagePageKey as String: QMKBridgeProtocol.usagePage,
-            kIOHIDDeviceUsageKey as String:      QMKBridgeProtocol.usageID
+            kIOHIDDeviceUsagePageKey as String: BridgeProtocol.usagePage,
+            kIOHIDDeviceUsageKey as String:      BridgeProtocol.usageID
         ]
     }
 
@@ -130,7 +130,7 @@ extension HIDBridge {
         let normalized = normalizeU16(rawU16)
 //        let percent    = normalizedToPercent(normalized)
 
-        let message = QMKBridgeMessage(
+        let message = SliderEventMessage(
             command: cmd,
             rawU16: rawU16,
             normalized: normalized,
@@ -144,9 +144,9 @@ extension HIDBridge {
 
     private func parseCommand(
         bytes: UnsafeMutablePointer<UInt8>
-    ) -> QMKBridgeCommand? {
+    ) -> HIDBridgeCommand? {
         let rawCmd = bytes[0]
-        return QMKBridgeCommand(rawValue: rawCmd)
+        return HIDBridgeCommand(rawValue: rawCmd)
     }
     private func readU16LE(
         from bytes: UnsafeMutablePointer<UInt8>,
@@ -168,7 +168,7 @@ extension HIDBridge {
 
     private func logReportSummary(
         id: UInt32,
-        cmd: QMKBridgeCommand?,
+        cmd: HIDBridgeCommand?,
         rawU16: UInt16,
         normalized: Float,
         percent: Int,

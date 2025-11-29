@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct HUDView: View {
-    @Bindable var uiState: QMKBridgeUIState
+    @Bindable var uiState: AppUIState
 
     var body: some View {
         HStack(spacing: 10) {

@@ -27,4 +27,4 @@ struct ControlDescriptor {
 }
 
 /// Convenience alias: mapping from HID command → descriptor
-typealias CommandRegistry = [QMKBridgeCommand: ControlDescriptor]
+typealias CommandRegistry = [HIDBridgeCommand: ControlDescriptor]

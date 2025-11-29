@@ -9,7 +9,7 @@ import Foundation
 
 /// The identity of the custom RAW HID interface used by the QMKBridge system.
 /// Both QMK firmware and the macOS helper app must use these values.
-enum QMKBridgeProtocol {
+enum BridgeProtocol {
     /// Vendor-defined HID usage page selected for this project.
     /// 0xFF69 is unused by all known ecosystems and safe for long-term use.
     static let usagePage: Int = 0xFF69
@@ -19,7 +19,7 @@ enum QMKBridgeProtocol {
     static let usageID: Int = 0x10
 }
 
-enum QMKBridgeCommand: UInt8 {
+enum HIDBridgeCommand: UInt8 {
     case setVolume     = 0x01
     case setBrightness = 0x02
 
@@ -30,13 +30,13 @@ enum QMKBridgeCommand: UInt8 {
 }
 
 
-struct QMKBridgeMessage {
-    let command: QMKBridgeCommand?
+struct SliderEventMessage {
+    let command: HIDBridgeCommand?
     let rawU16: UInt16
     let normalized: Float
     let length: Int
 }
 
-protocol QMKBridgeListener: AnyObject {
-    func didReceive(_ message: QMKBridgeMessage)
+protocol SliderEventListener: AnyObject {
+    func didReceive(_ message: SliderEventMessage)
 }
