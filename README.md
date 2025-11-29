@@ -1,7 +1,7 @@
 # SliderBun
 
 <p align="center">
-  <img src="doodle.gif" alt="SliderBun demo" width="100%">
+  <img src="doodle.gif" alt="SliderBun doodle" width="70%">
 </p>
 
 SliderBun is a small macOS utility that connects a QMK-controlled analog slider to system functions such as volume, brightness, or user-defined shortcuts.  
